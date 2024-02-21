@@ -8,3 +8,9 @@
 `define s_MEM_READ_LINE   ($fell (framen) && (cxben[3:0] == 4'b1110))
 `define s_MEM_WRITE_INV   ($fell (framen) && (cxben[3:0] == 4'b1111))
 `define s_BUS_IDLE        (farmen && irdyn)
+
+property p_mchk1;
+  @(posedge clk) $rose (framen) |-> (irdyn == 0);
+endproperty
+a_mchk1: assert property(p_mchk1);
+c_mchk1: cover property(p_mchk1);  
